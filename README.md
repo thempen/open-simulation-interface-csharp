@@ -7,7 +7,7 @@ The generated code is packaged as a NuGet package `OpenSimulationInterface.CShar
 
 1. Make sure to have python 3 installed on your machine.
 
-2. Clone the repository and navigate to the root directory.
+2. Clone the repository (recursive).
 
 3. Add the following code to the `.csproj` file to generate the C# files from the `.proto` files. This makes sure, that the required version dependencies are installed and the C# files are generated from the `.proto` files before building the project.
 
