@@ -43,8 +43,4 @@ jobs:
       run: dotnet pack --configuration Release --output ./nupkgs open-simulation-interface-csharp.csproj
 
     - name: Publish NuGet package
-      env:
-        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }} # Set this secret in your repository settings
-      run: |
-        echo "Publishing NuGet package..."
-        dotnet nuget push ${{ github.workspace }}\nupkgs\*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ${{ github.workspace }}\nupkgs\*.nupkg -k ${{ secrets.NUGET_ORG_API_KEY }} -s https://api.nuget.org/v3/index.json
