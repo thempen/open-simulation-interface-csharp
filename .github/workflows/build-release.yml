@@ -16,9 +16,6 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Run Python script
-      run: python setup.py
-
     - name: Set up .NET
       uses: actions/setup-dotnet@v4
       with:
