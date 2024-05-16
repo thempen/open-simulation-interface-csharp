@@ -16,6 +16,9 @@ jobs:
       with:
         python-version: '3.x'
 
+    - name: Run Python script
+      run: python setup.py ${{ github.workspace }}/open-simulation-interface/osi_version.proto.in ${{ github.workspace }}/open-simulation-interface/VERSION ${{ github.workspace }}/open-simulation-interface/osi_version.proto
+
     - name: Set up .NET
       uses: actions/setup-dotnet@v4
       with:
