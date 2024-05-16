@@ -31,7 +31,7 @@ jobs:
 
     - name: Generate C# code from Protobuf
       run: |
-        protoc --proto_path=C:\ProgramData\chocolatey\lib\protoc\tools --proto_path=${{ github.workspace }}\open-simulation-interface --csharp_out=${{ github.workspace }}\gen ${{ github.workspace }}\open-simulation-interface\*.proto
+        protoc --proto_path=C:\ProgramData\chocolatey\lib\protoc\tools --proto_path=${{ github.workspace }}\open-simulation-interface --csharp_out=${{ github.workspace }} ${{ github.workspace }}\open-simulation-interface\*.proto
 
     - name: Restore dependencies
       run: dotnet restore open-simulation-interface-csharp.csproj
