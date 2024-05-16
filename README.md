@@ -10,7 +10,7 @@ To build the project, follow these steps:
 Open the project on visual studio and build the project.
 Make sure to have python 3 installed on your machine.
 
-The necessary build steps are defined within the *.csproj file and will do:
+The necessary build steps are defined within the *.csproj file and will do the following steps. You don't need to do this yourself:
 1. Install the required version dependencies by running the setup script.
    ```sh
    python setup.py
@@ -31,28 +31,47 @@ After installing the `OpenSimulationInterface.CSharp` package, you can use the g
 ```csharp
 using Osi3;
 using Google.Protobuf;
-using System;
 
-class Program
+public class Program
 {
     static void Main(string[] args)
     {
         // Create an instance of GroundTruth and initialize properties
-        var groundTruth = new GroundTruth
+        GroundTruth groundTruth = new GroundTruth
         {
-            Version = new InterfaceVersion { Major = 3, Minor = 7, Patch = 0 },
-            Timestamp = new Timestamp { Seconds = 1234567890, Nanos = 123456789 },
-            HostVehicleId = new Identifier { Id = 1 },
+            Version = new InterfaceVersion
+            {
+                VersionMajor = 3, 
+                VersionMinor = 7, 
+                VersionPatch = 0
+            },
+
+            Timestamp = new Timestamp
+            {
+                Seconds = 1234567890, 
+                Nanos = 123456789
+            },
+
+            HostVehicleId = new Identifier
+            {
+                Value = 12345
+            },
+            
             // Add other properties as needed
         };
 
-        // Serialize to binary
-        byte[] data = groundTruth.ToByteArray();
-        Console.WriteLine($"Serialized GroundTruth to {data.Length} bytes.");
+        // Serialize to protobuf binary
+        byte[] serializedData = groundTruth.ToByteArray();
+        Console.WriteLine($"Serialized GroundTruth to {serializedData.Length} bytes.");
 
-        // Deserialize from binary
-        var deserializedGroundTruth = GroundTruth.Parser.ParseFrom(data);
-        Console.WriteLine($"Deserialized GroundTruth with version {deserializedGroundTruth.Version.Major}.{deserializedGroundTruth.Version.Minor}.{deserializedGroundTruth.Version.Patch}.");
+        // Deserialize from protobuf binary
+        GroundTruth? deserializedData = GroundTruth.Parser.ParseFrom(serializedData);
+        Console.WriteLine($"Deserialized GroundTruth with version " +
+                          $"{deserializedData.Version.VersionMajor}" +
+                          $".{deserializedData.Version.VersionMinor}" +
+                          $".{deserializedData.Version.VersionPatch}.");
+
+        Console.ReadKey(); // Prevent console from closing
     }
 }
 ```
