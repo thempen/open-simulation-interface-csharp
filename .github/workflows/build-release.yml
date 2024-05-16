@@ -46,4 +46,5 @@ jobs:
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }} # Set this secret in your repository settings
       run: |
-        dotnet nuget push "./nupkgs/*.nupkg" --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+        echo "Publishing NuGet package..."
+        dotnet nuget push ${{ github.workspace }}\nupkgs\*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json --verbosity detailed
