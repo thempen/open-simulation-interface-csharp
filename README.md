@@ -3,25 +3,22 @@
 This repository contains the build pipeline to generate C# code for the OpenSimulationInterface (OSI) protocol buffers. 
 The generated code is packaged as a NuGet package `OpenSimulationInterface.CSharp` and published on NuGet.
 
-## Building the Project
+## Building the Project locally
 
-To build the project, follow these steps:
+1. Make sure to have python 3 installed on your machine.
 
-Open the project on visual studio and build the project.
-Make sure to have python 3 installed on your machine.
+2. Clone the repository and navigate to the root directory.
 
-The necessary build steps are defined within the *.csproj file and will do the following steps. You don't need to do this yourself:
-1. Install the required version dependencies by running the setup script.
-   ```sh
-   python setup.py
-   ```
+3. Add the following code to the `.csproj` file to generate the C# files from the `.proto` files. This makes sure, that the required version dependencies are installed and the C# files are generated from the `.proto` files before building the project.
 
-2. Generate the C# files from the `.proto` files.
-   ```sh
-   protoc --proto_path=%userprofile%\.nuget\packages\google.protobuf.tools\3.26.1\tools --proto_path=open-simulation-interface --csharp_out=.\gen open-simulation-interface\*.proto
-   ```
+```xml
+	<Target Name="ProtobufCompile" BeforeTargets="BeforeBuild">
+		<Exec Command="python setup.py ./open-simulation-interface/osi_version.proto.in ./open-simulation-interface/VERSION ./open-simulation-interface/osi_version.proto" />
+		<Exec Command="protoc --proto_path=%userprofile%\.nuget\packages\google.protobuf.tools\3.26.1\tools --proto_path=open-simulation-interface --csharp_out=. open-simulation-interface\*.proto" />
+	</Target>
+```
 
-3. Compile the code.
+4. Build the project.
 
 ## Usage
 
