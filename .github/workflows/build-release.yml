@@ -21,6 +21,9 @@ jobs:
     - name: Run Python script
       run: python setup.py ${{ github.workspace }}\open-simulation-interface\osi_version.proto.in ${{ github.workspace }}\open-simulation-interface\VERSION ${{ github.workspace }}\open-simulation-interface\osi_version.proto
 
+    - name: Install Protobuf
+      run: choco install protoc --version=3.19.1 # Install protoc using Chocolatey package manager
+
     - name: Set up .NET
       uses: actions/setup-dotnet@v4
       with:
