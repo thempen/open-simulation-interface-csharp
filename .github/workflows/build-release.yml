@@ -29,6 +29,10 @@ jobs:
       with:
         dotnet-version: '8.x.x'
 
+    - name: Generate C# code from Protobuf
+      run: |
+        protoc --proto_path=%USERPROFILE%\.nuget\packages\google.protobuf.tools\3.26.1\tools --proto_path=${{ github.workspace }}\open-simulation-interface --csharp_out={{ github.workspace }}\gen {{ github.workspace }}\open-simulation-interface\*.proto
+
     - name: Restore dependencies
       run: dotnet restore open-simulation-interface-csharp.csproj
 
