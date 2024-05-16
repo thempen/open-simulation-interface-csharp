@@ -9,6 +9,10 @@ The generated code is packaged as a NuGet package `OpenSimulationInterface.CShar
 
 2. Clone the repository (recursive).
 
+```sh
+git clone --recursive https://github.com/thempen/open-simulation-interface-csharp.git
+```
+
 3. Add the following code to the `.csproj` file to generate the C# files from the `.proto` files. This makes sure, that the required version dependencies are installed and the C# files are generated from the `.proto` files before building the project.
 
 ```xml
@@ -23,7 +27,6 @@ The generated code is packaged as a NuGet package `OpenSimulationInterface.CShar
 ## Usage
 
 After installing the `OpenSimulationInterface.CSharp` package, you can use the generated classes in your C# projects. Here is an example:
-
 
 ```csharp
 using Osi3;
@@ -72,3 +75,16 @@ public class Program
     }
 }
 ```
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Acknowledgments
+
+Special thanks to the Center of [CARISSMA Institute of Automated Driving (C-IAD)](https://www.thi.de/en/research/carissma/c-iad/) of Technische Hochschule Ingolstadt for their support and contributions to this project.
+
