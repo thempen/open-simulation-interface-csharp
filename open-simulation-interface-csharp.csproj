@@ -1,11 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<RootNamespace>open_simulation_interface_csharp</RootNamespace>
+		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+		<PackageId>OpenSimulationInterface.CSharp</PackageId>
+		<RootNamespace>OsiSharp</RootNamespace>
+		<Version>1.0.0</Version>
+		<Owners>Thomas Hempen</Owners>
+		<Authors>Thomas Hempen</Authors>
+		<Product>Open Simulation Interface CSharp</Product>
+		<Title>Open Simulation Interface CSharp</Title>
+		<Description>This NuGet package provides C# bindings for the ASAM e.V. Open Simulation Interface (OSI). It enables developers to integrate OSI messages in their .NET applications using Protocol Buffers (protobuf). The package includes all necessary proto files and auto-generates C# classes for seamless integration.</Description>
+		<PackageTags>OSI;Open Simulation Interface;ProtoBuf;Protocol Buffers;ASAM</PackageTags>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<ProtobufInclude>%userprofile%\.nuget\packages\google.protobuf.tools\3.26.1\tools</ProtobufInclude>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<ProjectUrl>https://github.com/thempen/open-simulation-interface-csharp</ProjectUrl>
+		<RepositoryUrl>https://github.com/thempen/open-simulation-interface-csharp.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,7 +31,7 @@
 
 	<Target Name="ProtobufCompile" BeforeTargets="BeforeBuild">
 		<Exec Command="python setup.py" />
-		<Exec Command="protoc --proto_path=$(ProtobufInclude) --proto_path=open-simulation-interface --csharp_out=.\gen open-simulation-interface\*.proto" />
+		<Exec Command="protoc --proto_path=%userprofile%\.nuget\packages\google.protobuf.tools\3.26.1\tools --proto_path=open-simulation-interface --csharp_out=.\gen open-simulation-interface\*.proto" />
 	</Target>
 
 </Project>
