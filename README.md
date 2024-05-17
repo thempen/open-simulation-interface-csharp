@@ -80,10 +80,6 @@ public class Program
 
 Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.
 
-## License
-
-This project is licensed under the MIT License.
-
 ## Acknowledgments
 
 Special thanks to the Center of [CARISSMA Institute of Automated Driving (C-IAD)](https://www.thi.de/en/research/carissma/c-iad/) of Technische Hochschule Ingolstadt for their support and contributions to this project.
