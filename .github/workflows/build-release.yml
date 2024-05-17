@@ -70,4 +70,7 @@ jobs:
 
     - name: Upload release assets
       if: github.event_name == 'release'
-      run: gh release upload ${{ github.event.release.tag_name }} generated-files.zip
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        gh release upload ${{ github.event.release.tag_name }} generated-files.zip
