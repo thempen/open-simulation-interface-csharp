@@ -63,7 +63,7 @@ jobs:
     - name: Compress release assets with 7zip
       if: github.event_name == 'release'
       run: |
-        "C:\Program Files\7-Zip\7z.exe" a release.zip release\*
+        "C:\ProgramData\chocolatey\lib\7zip\7z.exe" a -tzip release.zip release\*
 
     - name: Install GitHub CLI
       if: github.event_name == 'release'
