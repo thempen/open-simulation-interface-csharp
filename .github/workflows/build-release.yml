@@ -60,7 +60,7 @@ jobs:
       if: github.event_name == 'release'
       uses: vimtor/action-zip@v1.2
       with:
-        files: release/*
+        files: release/
         recursive: true
         dest: release.zip
       
@@ -82,5 +82,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh auth login --with-token <<< $GITHUB_TOKEN
         gh release upload ${{ github.event.release.tag_name }} release.zip
