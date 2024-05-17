@@ -10,7 +10,7 @@
 		<Product>Open Simulation Interface CSharp</Product>
 		<Title>Open Simulation Interface CSharp</Title>
 		<Description>This NuGet package provides C# bindings for the ASAM e.V. Open Simulation Interface (OSI). It enables developers to integrate OSI messages in their .NET applications using Protocol Buffers (protobuf). The package includes all necessary proto files and auto-generates C# classes for seamless integration.</Description>
-		<PackageTags>"OSI";"Open Simulation Interface";"ProtoBuf";"Protocol Buffers";"ASAM"; "ASAM e.V."</PackageTags>
+		<PackageTags>OSI;OpenSimulationInterface;ASAM</PackageTags>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<!--<GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
