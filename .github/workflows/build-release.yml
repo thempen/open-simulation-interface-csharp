@@ -49,14 +49,21 @@ jobs:
     #  env:
     #    NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
     #  run: dotnet nuget push ${{ github.workspace }}\nupkgs\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
-
+      
     - name: Prepare release assets
       if: github.event_name == 'release'
       run: |
         mkdir release
         cp -r gen release/
-        cd release
-        zip -r ../release.zip .
+
+    - name: Install 7zip
+      if: github.event_name == 'release'
+      run: choco install 7zip
+      
+    - name: Compress release assets with 7zip
+      if: github.event_name == 'release'
+      run: |
+        "C:\Program Files\7-Zip\7z.exe" a release.zip release\*
 
     - name: Install GitHub CLI
       if: github.event_name == 'release'
