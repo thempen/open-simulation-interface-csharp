@@ -56,14 +56,22 @@ jobs:
         mkdir release
         cp -r gen release/
 
-    - name: Install 7zip
+    - name: Zip release assets
       if: github.event_name == 'release'
-      run: choco install 7zip
+      uses: vimtor/action-zip@v1.2
+      with:
+        files: release/*
+        recursive: true
+        dest: release.zip
       
-    - name: Compress release assets with 7zip
-      if: github.event_name == 'release'
-      run: |
-        "C:\ProgramData\chocolatey\lib\7zip\7z.exe" a -tzip release.zip release\*
+    #- name: Install 7zip
+    #  if: github.event_name == 'release'
+    #  run: choco install 7zip
+      
+   # - name: Compress release assets with 7zip
+    #  if: github.event_name == 'release'
+    #  run: |
+    #    "C:\ProgramData\chocolatey\lib\7zip\7z.exe" a -tzip release.zip release\*
 
     - name: Install GitHub CLI
       if: github.event_name == 'release'
