@@ -45,10 +45,10 @@ jobs:
     - name: Pack NuGet package
       run: dotnet pack --configuration Release --output ./nupkgs open-simulation-interface-csharp.csproj
 
-    #- name: Publish NuGet package
-    #  env:
-    #    NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-    #  run: dotnet nuget push ${{ github.workspace }}\nupkgs\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
+    - name: Publish NuGet package
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: dotnet nuget push ${{ github.workspace }}\nupkgs\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
       
     - name: Prepare release assets
       if: github.event_name == 'release'
@@ -62,16 +62,7 @@ jobs:
       with:
         files: release/
         recursive: true
-        dest: release.zip
-      
-    #- name: Install 7zip
-    #  if: github.event_name == 'release'
-    #  run: choco install 7zip
-      
-   # - name: Compress release assets with 7zip
-    #  if: github.event_name == 'release'
-    #  run: |
-    #    "C:\ProgramData\chocolatey\lib\7zip\7z.exe" a -tzip release.zip release\*
+        dest: generated-files.zip
 
     - name: Install GitHub CLI
       if: github.event_name == 'release'
@@ -79,7 +70,4 @@ jobs:
 
     - name: Upload release assets
       if: github.event_name == 'release'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        gh release upload ${{ github.event.release.tag_name }} release.zip
+      run: gh release upload ${{ github.event.release.tag_name }} generated-files.zip
