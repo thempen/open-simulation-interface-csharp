@@ -1,0 +1,29 @@
+name: Release Workflow
+
+on: [workflow_call]
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Prepare release assets
+      run: |
+        mkdir release
+        cp -r gen release/
+
+    - name: Zip release assets
+      uses: vimtor/action-zip@v1.2
+      with:
+        files: release/
+        recursive: true
+        dest: generated-files.zip
+
+    - name: Install GitHub CLI
+      run: choco install gh
+
+    - name: Upload release assets
+      run: gh release upload ${{ github.event.release.tag_name }} generated-files.zip

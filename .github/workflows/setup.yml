@@ -1,0 +1,26 @@
+name: CI Setup
+
+on: [workflow_call]
+
+jobs:
+  setup:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: true # Fetch submodules
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install Protobuf
+      run: choco install protoc --version=3.19.1 # Install protoc using Chocolatey package manager
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.x.x'

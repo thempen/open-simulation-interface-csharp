@@ -1,0 +1,22 @@
+name: CI Build
+
+on: [workflow_call]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Run Python script
+      run: |
+        mkdir -p gen
+        python setup.py ${{ github.workspace }}\open-simulation-interface\osi_version.proto.in ${{ github.workspace }}\open-simulation-interface\VERSION ${{ github.workspace }}\open-simulation-interface\osi_version.proto
+
+    - name: Generate C# code from Protobuf
+      run: protoc --proto_path=C:\ProgramData\chocolatey\lib\protoc\tools --proto_path=${{ github.workspace }}\open-simulation-interface --csharp_out=${{ github.workspace }}\gen ${{ github.workspace }}\open-simulation-interface\*.proto
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ github.workspace }}\open-simulation-interface-csharp.csproj
+
+    - name: Build
+      run: dotnet build --configuration Release ${{ github.workspace }}\open-simulation-interface-csharp.csproj

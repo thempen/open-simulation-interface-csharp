@@ -1,0 +1,16 @@
+name: CI NuGet
+
+on: [workflow_call]
+
+jobs:
+  nuget:
+    runs-on: windows-latest
+
+    steps:
+    - name: Pack NuGet package
+      run: dotnet pack --configuration Release --output ./nupkgs ${{ github.workspace }}\open-simulation-interface-csharp.csproj
+
+    - name: Publish NuGet package
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: dotnet nuget push ${{ github.workspace }}\nupkgs\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
