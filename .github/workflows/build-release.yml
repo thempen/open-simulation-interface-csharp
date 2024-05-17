@@ -58,9 +58,9 @@ jobs:
         cd release
         zip -r ../release.zip .
 
-        - name: Install GitHub CLI
-        if: github.event_name == 'release'
-        run: choco install gh
+    - name: Install GitHub CLI
+      if: github.event_name == 'release'
+      run: choco install gh
 
     - name: Upload release assets
       if: github.event_name == 'release'
