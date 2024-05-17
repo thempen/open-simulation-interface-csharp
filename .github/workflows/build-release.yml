@@ -58,13 +58,14 @@ jobs:
         cd release
         zip -r ../release.zip .
 
-    - name: Set up GitHub CLI
-      if: github.event_name == 'release'
-      uses: actions/setup-gh@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        - name: Install GitHub CLI
+        if: github.event_name == 'release'
+        run: choco install gh
 
     - name: Upload release assets
       if: github.event_name == 'release'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        gh auth login --with-token <<< $GITHUB_TOKEN
         gh release upload ${{ github.event.release.tag_name }} release.zip
