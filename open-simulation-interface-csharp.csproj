@@ -18,7 +18,14 @@
 		<RepositoryUrl>https://github.com/thempen/open-simulation-interface-csharp.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" />
+		<None Include="LICENSE" Pack="true" PackagePath="" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Google.Protobuf" Version="3.26.1" />
