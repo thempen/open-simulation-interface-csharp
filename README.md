@@ -1,7 +1,7 @@
 # OpenSimulationInterface.CSharp
 
 This repository contains the build pipeline to generate C# code for the OpenSimulationInterface (OSI) protocol buffers. 
-The generated code is packed as a NuGet package `OpenSimulationInterface.CSharp` and published on NuGet.
+The generated code is packed as a NuGet package [`OpenSimulationInterface.CSharp`](https://www.nuget.org/packages/OpenSimulationInterface.CSharp) and published on NuGet.
 
 ## Building the Project locally
 
