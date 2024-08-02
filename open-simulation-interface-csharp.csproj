@@ -4,12 +4,12 @@
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
 		<PackageId>OpenSimulationInterface.CSharp</PackageId>
 		<RootNamespace>OsiSharp</RootNamespace>
-		<Version>1.0.3</Version>
+		<Version>1.1.0</Version>
 		<Owners>Thomas Hempen</Owners>
 		<Authors>Thomas Hempen</Authors>
 		<Product>Open Simulation Interface CSharp</Product>
 		<Title>Open Simulation Interface CSharp</Title>
-		<Description>This NuGet package provides C# bindings for the ASAM e.V. Open Simulation Interface (OSI) version v3.7.0-rc2 - ASAM OSI "Jolly Jones" Release Candidate 2. It enables developers to integrate OSI messages in their .NET applications using Protocol Buffers (protobuf). The package includes all necessary proto files and auto-generates C# classes for seamless integration.</Description>
+		<Description>This NuGet package provides C# bindings for the ASAM e.V. Open Simulation Interface (OSI) version v3.7.0 - ASAM OSI "Jolly Jones". It enables developers to integrate OSI messages in their .NET applications using Protocol Buffers (protobuf). The package includes all necessary proto files and auto-generates C# classes for seamless integration.</Description>
 		<PackageTags>OSI;OpenSimulationInterface;ASAM</PackageTags>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
